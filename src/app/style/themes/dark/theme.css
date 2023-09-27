@@ -1,0 +1,11 @@
+:root {
+  --c-background-400: #323232;
+  --c-background-600: #1e1e1e;
+
+  --c-on-background-400: #ffffff;
+
+  --c-accent-500: #ff8b02;
+  --c-accent-200: #fffaf5;
+
+  --c-success-900: #92ffa3;
+}

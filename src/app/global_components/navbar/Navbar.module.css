@@ -1,0 +1,152 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+
+  /* removes the space taken up by the navbar from the viewport */
+  margin-top: calc(var(--h-navbar) * -1);
+
+  top: 1rem;
+  right: 0;
+  left: 0;
+
+  width: 100%;
+  min-height: var(--h-navbar);
+  background-color: transparent;
+  z-index: 99;
+
+  transition: background-color var(--simple-transition-duration),
+    top var(--simple-transition-duration),
+    height var(--simple-transition-duration);
+
+  .contentWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    width: 5.5rem;
+    transition: width var(--simple-transition-duration);
+  }
+
+  &.isMobileUlShown,
+  &.isViewportScrolled {
+    top: 0;
+    background-color: var(--c-background-300);
+
+    .logo {
+      width: 5rem;
+    }
+  }
+
+  @mixin lg {
+    background-color: unset;
+    top: 5rem;
+
+    .contentWrapper {
+      justify-content: flex-end;
+    }
+
+    .logo {
+      display: none;
+    }
+
+    .hamburgerButton {
+      display: none;
+    }
+
+    &.isViewportScrolled {
+      top: 1rem;
+      background-color: transparent;
+
+      .logo {
+        width: 5rem;
+      }
+    }
+  }
+}
+
+.linksContainer {
+  right: 0;
+
+  display: none;
+
+  &.isMobileUlShown {
+    position: fixed;
+    top: var(--h-navbar);
+    display: block;
+    width: 100%;
+    padding: 2rem var(--s-sides-inset);
+    margin: 0 auto;
+    max-width: var(--max-width);
+    background-color: var(--c-background-500);
+    z-index: 99;
+  }
+
+  ul {
+    display: flex;
+    gap: var(--s-siblings);
+    list-style-type: none;
+
+    flex-direction: column;
+
+    @mixin md {
+      flex-direction: row;
+    }
+
+    @mixin lg {
+      gap: calc(var(--s-siblings) + 1.5rem);
+    }
+
+    li.active {
+      a {
+        color: var(--c-accent-900);
+      }
+    }
+  }
+
+  a {
+    display: inline-block;
+    padding: 0.5rem 0;
+    width: 100%;
+
+    @mixin lg {
+      padding: var(--s-sides-inset-card) 0;
+    }
+  }
+
+  @mixin lg {
+    display: flex;
+
+    border-radius: 9999px;
+    height: 100%;
+
+    transition: background-color var(--simple-transition-duration),
+      padding var(--simple-transition-duration),
+      height var(--simple-transition-duration);
+
+    &.isViewportScrolled {
+      padding: 0 2rem;
+
+      background-color: var(--c-background-300);
+    }
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: var(--h-navbar);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.821);
+  display: none;
+  border: none;
+
+  &.isMobileUlShown {
+    display: block;
+  }
+}

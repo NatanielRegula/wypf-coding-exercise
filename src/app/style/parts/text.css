@@ -1,0 +1,97 @@
+:root {
+  --font-family: var(--font-roboto);
+}
+
+body {
+  font-family: var(--font-family);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /* text-transform: uppercase; */
+  font-weight: 500;
+}
+
+h1 {
+  --base-font-size: 1.5rem;
+
+  font-size: var(--base-font-size);
+  font-weight: 700;
+  line-height: 121.5%;
+  letter-spacing: 0.14906rem;
+  padding-right: 1rem;
+
+  @mixin lg {
+    font-size: calc(var(--base-font-size) * 1.3);
+  }
+  @mixin xl {
+    font-size: calc(var(--base-font-size) * 1.5);
+  }
+  @mixin xxl {
+    font-size: calc(var(--base-font-size) * 1.8);
+  }
+}
+
+h2 {
+  --base-font-size: 1.2rem;
+
+  font-size: var(--base-font-size);
+  line-height: 121.5%;
+  letter-spacing: 0.11531rem;
+
+  @mixin lg {
+    font-size: calc(var(--base-font-size) * 1.3);
+  }
+  @mixin xl {
+    font-size: calc(var(--base-font-size) * 1.5);
+  }
+  @mixin xxl {
+    font-size: calc(var(--base-font-size) * 1.8);
+  }
+}
+
+h3 {
+  font-size: 1.15rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h5 {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+p {
+  font-size: 0.9rem;
+  color: var(--c-on-background-400);
+  line-height: 165%;
+
+  @mixin lg {
+    font-size: 1rem;
+  }
+}
+
+.insideTextSpanAccent {
+  color: var(--c-accent-900);
+}
+.emphasizedParagraph {
+  color: var(--c-on-background-500);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  font-family: var(--font-family);
+}
+
+button {
+  font-family: var(--font-family);
+}

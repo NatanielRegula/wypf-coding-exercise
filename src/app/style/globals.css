@@ -1,0 +1,70 @@
+/* ----- Themes ----- */
+@import 'themes/light/theme';
+@import 'parts/text';
+@import 'parts/accessibility';
+
+:root {
+  --max-width: 1100px;
+
+  --border-width: 2px;
+  --border-width-200: 1px;
+  --simple-transition-duration: 0.25s;
+  --simple-transition-duration-600: 0.3s;
+  --radius: 5px;
+
+  /* spacings */
+  --s-siblings: 1rem;
+  --s-siblings-small: 0.6rem;
+  --s-siblings-large: 1.6rem;
+  --s-between-sections-gap-vertical: 3rem;
+
+  --s-sides-inset: 1em;
+  --s-sides-inset-card: 1em;
+
+  @mixin md {
+    --s-sides-inset: 2em;
+  }
+
+  /* heights */
+  --h-navbar: 60px;
+
+  @media (prefers-reduced-motion) {
+    --simple-transition-duration: 0s;
+    --simple-transition-duration-600: 0s;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--c-background-400);
+  color: var(--c-on-background-400);
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+input,
+textarea,
+button,
+select,
+.button,
+a {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+.button,
+a {
+  cursor: pointer;
+}
