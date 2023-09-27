@@ -26,6 +26,8 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
     "cssnano": "^6.0.1",
     "husky": "^8.0.3",
     "postcss": "^8.4.24",
