@@ -1,12 +1,13 @@
 {
-  "name": "nrux",
-  "version": "0.1.0",
+  "name": "wypf_coding_exercise",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.0",
@@ -31,6 +32,7 @@
     "postcss-mixins": "^9.0.4",
     "postcss-nested": "^6.0.1",
     "postcss-preset-env": "^8.5.1",
-    "postcss-simple-vars": "^7.0.1"
+    "postcss-simple-vars": "^7.0.1",
+    "prettier": "^3.0.3"
   }
 }
