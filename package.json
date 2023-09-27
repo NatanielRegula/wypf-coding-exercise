@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.0",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "cssnano": "^6.0.1",
+    "husky": "^8.0.3",
     "postcss": "^8.4.24",
     "postcss-each": "^1.1.0",
     "postcss-flexbugs-fixes": "^5.0.2",
