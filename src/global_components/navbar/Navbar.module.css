@@ -1,28 +1,25 @@
 .navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-
-  /* removes the space taken up by the navbar from the viewport */
-  margin-top: calc(var(--h-navbar) * -1);
-
-  top: 1rem;
-  right: 0;
-  left: 0;
-
   width: 100%;
   min-height: var(--h-navbar);
-  background-color: transparent;
+
+  background-color: var(--c-secondary-400);
   z-index: 99;
 
-  transition: background-color var(--simple-transition-duration),
+  transition:
+    background-color var(--simple-transition-duration),
     top var(--simple-transition-duration),
     height var(--simple-transition-duration);
 
   .contentWrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
   }
 
@@ -31,24 +28,7 @@
     transition: width var(--simple-transition-duration);
   }
 
-  &.isMobileUlShown,
-  &.isViewportScrolled {
-    top: 0;
-    background-color: var(--c-background-300);
-
-    .logo {
-      width: 5rem;
-    }
-  }
-
   @mixin lg {
-    background-color: unset;
-    top: 5rem;
-
-    .contentWrapper {
-      justify-content: flex-end;
-    }
-
     .logo {
       display: none;
     }
@@ -56,21 +36,11 @@
     .hamburgerButton {
       display: none;
     }
-
-    &.isViewportScrolled {
-      top: 1rem;
-      background-color: transparent;
-
-      .logo {
-        width: 5rem;
-      }
-    }
   }
 }
 
 .linksContainer {
-  right: 0;
-
+  left: 0;
   display: none;
 
   &.isMobileUlShown {
@@ -81,7 +51,7 @@
     padding: 2rem var(--s-sides-inset);
     margin: 0 auto;
     max-width: var(--max-width);
-    background-color: var(--c-background-500);
+    background-color: var(--c-secondary-300);
     z-index: 99;
   }
 
@@ -100,20 +70,28 @@
       gap: calc(var(--s-siblings) + 1.5rem);
     }
 
-    li.active {
-      a {
-        color: var(--c-accent-900);
+    a {
+      display: inline-block;
+      padding: 0.5rem 0;
+      width: 100%;
+      transition:
+        opacity var(--simple-transition-duration),
+        color var(--simple-transition-duration);
+
+      @mixin lg {
+        padding: var(--s-sides-inset-card) 0;
+      }
+
+      &:hover,
+      &:focus-visible {
+        opacity: 0.6;
       }
     }
-  }
 
-  a {
-    display: inline-block;
-    padding: 0.5rem 0;
-    width: 100%;
-
-    @mixin lg {
-      padding: var(--s-sides-inset-card) 0;
+    li.active {
+      a {
+        color: var(--c-accent-500);
+      }
     }
   }
 
@@ -123,7 +101,8 @@
     border-radius: 9999px;
     height: 100%;
 
-    transition: background-color var(--simple-transition-duration),
+    transition:
+      background-color var(--simple-transition-duration),
       padding var(--simple-transition-duration),
       height var(--simple-transition-duration);
 

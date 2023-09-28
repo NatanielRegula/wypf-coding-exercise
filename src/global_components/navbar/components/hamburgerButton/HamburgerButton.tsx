@@ -3,7 +3,6 @@ import styles from './HamburgerButton.module.css';
 import { MouseEventHandler } from 'react';
 
 interface Props {
-  scrolled: boolean;
   isMobileUlShown: boolean;
   onClick: MouseEventHandler;
   className?: string;
@@ -14,7 +13,6 @@ export default function HamburgerButton(props: Props) {
   return (
     <button
       className={classNames(styles.hamburgerButton, {
-        [styles.scrolled]: props.scrolled,
         [styles.showMobile]: props.isMobileUlShown,
         [props.className ?? '']: props.className != undefined,
       })}

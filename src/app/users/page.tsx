@@ -8,6 +8,7 @@ import UserCard from './components/userCard/UserCard';
 import styles from './page.module.css';
 
 import { User } from '../api/users/types';
+import Navbar from '@/global_components/navbar/Navbar';
 
 export default function Users() {
   const [users, setUsers] = useState<User[]>([]);
@@ -24,7 +25,8 @@ export default function Users() {
 
   return (
     <main className={styles.page}>
-      <ContentWrapper>
+      <Navbar />
+      <ContentWrapper className={styles.contentWrapper}>
         <div className={styles.list}>
           {users.map((user) => (
             <UserCard

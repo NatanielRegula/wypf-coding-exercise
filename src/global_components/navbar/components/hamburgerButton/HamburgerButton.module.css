@@ -22,11 +22,12 @@
   div {
     width: 2rem;
     height: var(--bar-height);
-    background-color: var(--c-on-background-500);
+    background-color: var(--c-on-secondary-400);
     border-radius: 9999px;
     transform-origin: right center;
 
-    transition: opacity var(--simple-transition-duration),
+    transition:
+      opacity var(--simple-transition-duration),
       rotate var(--simple-transition-duration),
       width var(--simple-transition-duration),
       translate var(--simple-transition-duration);

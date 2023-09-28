@@ -3,29 +3,19 @@
 import classNames from 'classnames';
 import ContentWrapper from '../content_wrapper/ContentWrapper';
 import styles from './Navbar.module.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import HamburgerButton from './components/hamburgerButton/HamburgerButton';
+import Link from 'next/link';
+
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [isMobileUlShown, setIsMobileUlShown] = useState(false);
-  const [isViewportScrolled, setInViewportScrolled] = useState(false);
-
-  const handleScroll = () => setInViewportScrolled(window.scrollY >= 20);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  const currentRoute = usePathname();
 
   return (
     <nav
       className={classNames(styles.navbar, {
-        [styles.isViewportScrolled]: isViewportScrolled,
         [styles.isMobileUlShown]: isMobileUlShown,
       })}
     >
@@ -42,27 +32,42 @@ export default function Navbar() {
         <div
           className={classNames(styles.linksContainer, {
             [styles.isMobileUlShown]: isMobileUlShown,
-            [styles.isViewportScrolled]: isViewportScrolled,
           })}
         >
           <ul id="primary-navigation">
-            <li className={styles.active}>
-              <a href="/">Home</a>
+            <li
+              className={classNames({
+                [styles.active]: currentRoute === '/',
+              })}
+            >
+              <Link href="/">Home</Link>
             </li>
-            <li>
-              <a href="/services">Services</a>
+
+            <li
+              className={classNames({
+                [styles.active]: currentRoute === '/users',
+              })}
+            >
+              <Link href="/users">Users</Link>
             </li>
-            <li>
-              <a href="/about">About</a>
+
+            <li
+              className={classNames({
+                [styles.active]: currentRoute === '/albums',
+              })}
+            >
+              <Link href="/albums">Albums</Link>
             </li>
+
             <li>
-              <a href="/contact">Contact</a>
+              <Link href="https://github.com/NatanielRegula/" target="_blank">
+                Github
+              </Link>
             </li>
           </ul>
         </div>
         <HamburgerButton
           className={styles.hamburgerButton}
-          scrolled={isViewportScrolled}
           isMobileUlShown={isMobileUlShown}
           onClick={() => setIsMobileUlShown((oldValue) => !oldValue)}
           ariaControls="primary-navigation"
