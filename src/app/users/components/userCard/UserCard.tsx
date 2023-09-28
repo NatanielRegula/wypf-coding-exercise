@@ -4,7 +4,7 @@ import { useState } from 'react';
 import styles from './UserCard.module.css';
 import LabeledValue from './components/labeledValue/LabeledValue';
 import classNames from 'classnames';
-import Button from '@/app/global_components/button/Button';
+import Button from '@/global_components/button/Button';
 
 interface Props {
   fullName: string;

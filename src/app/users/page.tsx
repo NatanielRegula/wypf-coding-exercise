@@ -1,4 +1,4 @@
-import ContentWrapper from '../global_components/content_wrapper/ContentWrapper';
+import ContentWrapper from '../../global_components/content_wrapper/ContentWrapper';
 import UserCard from './components/userCard/UserCard';
 import styles from './page.module.css';
 
