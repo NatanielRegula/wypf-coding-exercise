@@ -33,6 +33,7 @@ export default function Users() {
               emailAddress={user.email}
               phoneNumber={user.phone}
               userId={user.id}
+              location={user.address}
               key={user.id}
             />
           ))}

@@ -41,6 +41,7 @@
     padding: var(--s-sides-inset-card);
     background-color: var(--c-accent-200);
     flex: 1 0 auto;
+    flex-wrap: wrap;
 
     flex-direction: column;
     align-items: start;

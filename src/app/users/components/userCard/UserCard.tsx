@@ -5,6 +5,7 @@ import styles from './UserCard.module.css';
 import LabeledValue from './components/labeledValue/LabeledValue';
 import classNames from 'classnames';
 import Button from '@/global_components/button/Button';
+import { Address } from '@/app/api/users/types';
 
 interface Props {
   fullName: string;
@@ -12,6 +13,7 @@ interface Props {
   userId: number;
   emailAddress: string;
   phoneNumber: string;
+  location: Address;
 }
 
 export default function UserCard(props: Props) {
@@ -54,6 +56,10 @@ export default function UserCard(props: Props) {
         <LabeledValue label={'User Name'} value={props.userName} />
         <LabeledValue label={'Phone Number'} value={props.phoneNumber} />
         <LabeledValue label={'Email Address'} value={props.emailAddress} />
+        <LabeledValue
+          label={'Location'}
+          value={`${props.location.street} ${props.location.suite} ${props.location.city} ${props.location.zipcode} `}
+        />
       </div>
     </div>
   );
