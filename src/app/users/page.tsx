@@ -27,6 +27,7 @@ export default function Users() {
     <main className={styles.page}>
       <Navbar />
       <ContentWrapper className={styles.contentWrapper}>
+        <h1>Users list</h1>
         <div className={styles.list}>
           {users.map((user) => (
             <UserCard

@@ -4,10 +4,14 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+
+  h1 {
+    margin-bottom: var(--s-siblings-large);
+  }
 }
 
 .contentWrapper {
-  margin-top: var(--s-siblings);
+  padding: 10rem 0;
 }
 
 .list {

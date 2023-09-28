@@ -25,6 +25,8 @@ h1 {
   letter-spacing: 0.14906rem;
   padding-right: 1rem;
 
+  text-transform: uppercase;
+
   @mixin lg {
     font-size: calc(var(--base-font-size) * 1.3);
   }
