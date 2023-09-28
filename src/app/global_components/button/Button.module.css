@@ -7,12 +7,13 @@
   text-decoration: underline;
   font-size: 0.9rem;
 
-  transition: color var(--simple-transition-duration),
+  transition:
+    color var(--simple-transition-duration),
     opacity var(--simple-transition-duration),
     background-color var(--simple-transition-duration);
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     color: var(--c-accent-300);
   }
 
@@ -39,7 +40,8 @@
   color: var(--c-accent-500);
 
   cursor: pointer;
-  transition: color var(--simple-transition-duration),
+  transition:
+    color var(--simple-transition-duration),
     opacity var(--simple-transition-duration),
     background-color var(--simple-transition-duration),
     box-shadow var(--simple-transition-duration),
@@ -72,7 +74,7 @@
   }
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     opacity: 0.6;
   }
 }
