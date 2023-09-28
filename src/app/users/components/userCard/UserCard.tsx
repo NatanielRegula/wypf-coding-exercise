@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import styles from './UserCard.module.css';
-import LabeledValue from './components/labeledValue/LabeledValue';
+import LabeledValue from '../../../../global_components/labeledValue/LabeledValue';
 import classNames from 'classnames';
 import Button from '@/global_components/button/Button';
 import { Address } from '@/app/api/users/types';
