@@ -16,10 +16,17 @@ export default function ContentWrapper(props: Props) {
       className={classNames({
         [styles.contentWrapper]: true,
         [styles.fullHeight]: props.fullHeight,
-        [props.className ?? '']: props.className != undefined,
       })}
     >
-      {props.children}
+      <div
+        id={props.id}
+        className={classNames({
+          [props.className ?? '']: props.className != undefined,
+          [styles.fullHeight]: props.fullHeight,
+        })}
+      >
+        {props.children}
+      </div>
     </div>
   );
 }
