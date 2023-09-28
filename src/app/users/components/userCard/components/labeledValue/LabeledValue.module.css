@@ -1,0 +1,26 @@
+.labeledValue {
+  display: flex;
+  flex-direction: column;
+
+  &.alignEnd {
+    text-align: end;
+  }
+}
+
+.label {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+.value {
+  color: var(--c-accent-500);
+}
+
+.primary {
+  .value {
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+}
