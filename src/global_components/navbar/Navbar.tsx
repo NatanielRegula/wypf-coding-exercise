@@ -60,7 +60,10 @@ export default function Navbar() {
             </li>
 
             <li>
-              <Link href="https://github.com/NatanielRegula/" target="_blank">
+              <Link
+                href="https://github.com/NatanielRegula/wypf-coding-exercise"
+                target="_blank"
+              >
                 Github
               </Link>
             </li>
