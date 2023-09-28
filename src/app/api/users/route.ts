@@ -5,6 +5,7 @@ export async function GET(): Promise<NextResponse<User[]>> {
   const res = await fetch('https://jsonplaceholder.typicode.com/users', {
     headers: {
       'Content-Type': 'application/json',
+      credentials: 'same-origin',
     },
   });
 

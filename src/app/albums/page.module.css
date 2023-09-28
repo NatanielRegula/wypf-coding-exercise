@@ -1,0 +1,21 @@
+.page {
+  position: relative;
+  min-height: 100svh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    margin-bottom: var(--s-siblings-large);
+  }
+}
+
+.contentWrapper {
+  padding: 10rem 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-siblings);
+}
