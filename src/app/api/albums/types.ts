@@ -7,3 +7,12 @@ export const AlbumZodObject = z.object({
 });
 
 export type Album = z.infer<typeof AlbumZodObject>;
+
+export type AlbumsApiResponse = {
+  data: Album[];
+  hasPrevPage: boolean;
+  hasNextPage: boolean;
+  pagesCount: number;
+  currentPage: number;
+  itemsPerPage: number;
+};
