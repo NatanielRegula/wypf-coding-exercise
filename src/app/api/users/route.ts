@@ -1,15 +1,26 @@
 import { NextResponse } from 'next/server';
 import { User, UserZodObject } from './types';
 
-export async function GET(): Promise<NextResponse<User[]>> {
-  const res = await fetch('https://jsonplaceholder.typicode.com/users', {
-    headers: {
-      'Content-Type': 'application/json',
-      credentials: 'same-origin',
-    },
-  });
+export async function GET(request: Request): Promise<NextResponse<User[]>> {
+  const { searchParams } = new URL(request.url);
+
+  const requestedUserId = searchParams.get('userId');
+
+  const res = await fetch(
+    `https://jsonplaceholder.typicode.com/users/${requestedUserId ?? ''}`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        credentials: 'same-origin',
+      },
+    }
+  );
 
   const rawData = await res.json();
+
+  if (requestedUserId !== null) {
+    return NextResponse.json([UserZodObject.parse(rawData)]);
+  }
 
   const validatedUsersAndErrorsAsNull = rawData.map((data: unknown) => {
     try {
