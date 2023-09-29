@@ -10,6 +10,7 @@ import { User } from '../api/users/types';
 import { Photo } from '../api/photos/types';
 import PhotoCard from './components/photoCard/PhotoCard';
 import LoadingIndicator from '@/global_components/loadingIndicator/LoadingIndicator';
+import PhotoModal from './components/photoModal/PhotoModal';
 
 export default function Photos({
   searchParams,
@@ -38,6 +39,14 @@ export default function Photos({
     setPhotos(photosResponseJson);
   };
 
+  const [photoForModal, setPhotoForModal] = useState<Photo>();
+  const [showPhotoModal, setShowPhotoModal] = useState(false);
+
+  const photoClickedHandler = async (photo: Photo) => {
+    setPhotoForModal(photo);
+    setShowPhotoModal(true);
+  };
+
   useEffect(() => {
     getUser();
     getPhotos();
@@ -45,6 +54,17 @@ export default function Photos({
 
   return (
     <main className={styles.page}>
+      {photoForModal !== undefined && (
+        <PhotoModal
+          show={showPhotoModal}
+          url={photoForModal.url}
+          title={photoForModal.title}
+          onCloseClick={() => {
+            setShowPhotoModal(false);
+          }}
+        />
+      )}
+
       <ContentWrapper className={styles.contentWrapper}>
         <LoadingIndicator loading={photos.length === 0} />
 
@@ -54,12 +74,17 @@ export default function Photos({
 
         <div className={styles.photos}>
           {photos.map((photo) => (
-            <PhotoCard
-              title={photo.title}
-              url={photo.url}
-              thumbnailUrl={photo.thumbnailUrl}
+            <button
               key={photo.id}
-            />
+              className={styles.photoCardButtonWrapper}
+              onClick={() => photoClickedHandler(photo)}
+            >
+              <PhotoCard
+                title={photo.title}
+                url={photo.url}
+                thumbnailUrl={photo.thumbnailUrl}
+              />
+            </button>
           ))}
         </div>
       </ContentWrapper>

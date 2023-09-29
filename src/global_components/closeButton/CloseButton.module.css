@@ -1,0 +1,41 @@
+.closeButton {
+  --bar-height: 3px;
+  --gap-between-bars: 5px;
+  --close-height: calc(var(--bar-height) * 2 + var(--gap-between-bars));
+  --square-root-of-2: 1.4142135623730950488;
+
+  --required-width-in-x-shape: calc(
+    var(--close-height) * var(--square-root-of-2)
+  );
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  background-color: transparent;
+  border: none;
+
+  gap: var(--gap-between-bars);
+  height: var(--close-height);
+
+  div {
+    width: 2rem;
+    height: var(--bar-height);
+    background-color: var(--c-on-secondary-400);
+    border-radius: 9999px;
+    transform-origin: right center;
+  }
+
+  div:nth-child(1) {
+    rotate: -45deg;
+    width: var(--required-width-in-x-shape);
+    translate: 0 calc(var(--bar-height) / -2);
+  }
+
+  div:nth-child(2) {
+    rotate: 45deg;
+    width: var(--required-width-in-x-shape);
+    translate: 0 calc(var(--bar-height) / 2);
+  }
+}

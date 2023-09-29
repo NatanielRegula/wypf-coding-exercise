@@ -62,7 +62,7 @@
 
     flex-direction: column;
 
-    @mixin md {
+    @mixin lg {
       flex-direction: row;
     }
 

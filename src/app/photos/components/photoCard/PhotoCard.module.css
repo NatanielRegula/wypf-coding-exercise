@@ -5,6 +5,7 @@
   border: var(--border-width-200) solid var(--c-on-background-200);
   border-radius: var(--radius);
   overflow: clip;
+  height: 100%;
 
   .imageContainer {
     background-color: var(--c-background-700);

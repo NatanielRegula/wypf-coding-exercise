@@ -20,11 +20,23 @@
 
 .photos {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--s-siblings);
+
+  @mixin sm {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .photoCardButtonWrapper {
+    display: flex;
+    background: none;
+    border: none;
+    text-align: inherit;
+  }
 
   img {
     width: 100%;
     height: auto;
+    display: block;
   }
 }
