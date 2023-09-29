@@ -8,14 +8,37 @@
 
   .primaryInformation {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: start;
+    align-items: start;
     flex: 1 0 auto;
     padding: var(--s-sides-inset-card);
+    gap: 2rem;
+    flex-direction: column;
+
+    @mixin md {
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+    }
 
     .endSection {
       display: flex;
       gap: var(--s-siblings);
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      flex-wrap: wrap;
+
+      @mixin md {
+        justify-content: unset;
+        align-items: center;
+        flex: 0 0 auto;
+        width: unset;
+
+        .labeledValue {
+          text-align: end;
+        }
+      }
     }
 
     .showHideDetailBtn {

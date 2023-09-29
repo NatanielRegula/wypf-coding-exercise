@@ -28,7 +28,7 @@ export default function UserCard(props: Props) {
           <LabeledValue
             label={'User Id'}
             value={props.userId.toString()}
-            alignEnd
+            className={styles.labeledValue}
           />
           <Button
             className={styles.showHideDetailBtn}
