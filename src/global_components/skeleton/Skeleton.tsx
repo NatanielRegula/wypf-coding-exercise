@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import styles from './Skeleton.module.css';
 
 interface Props {
@@ -5,9 +6,15 @@ interface Props {
 }
 
 export default function SkeletonBars(props: Props) {
+  const keys = useMemo(
+    () =>
+      Array.from({ length: props.quantity }, (_, index) => `skeleton${index}`),
+    [props.quantity]
+  );
+
   return (
     <>
-      {[...Array(props.quantity)].map((i) => (
+      {keys.map((i) => (
         <div className={styles.bar} key={i} />
       ))}
     </>
