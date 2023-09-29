@@ -51,8 +51,7 @@
 
       svg {
         transition: rotate var(--simple-transition-duration);
-        width: 1.25rem;
-        height: 1.25rem;
+
         rotate: 180deg;
       }
     }
