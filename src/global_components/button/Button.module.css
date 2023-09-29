@@ -29,6 +29,8 @@
   font-weight: 600;
   text-align: center;
   font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
   border-radius: var(--radius);
 
   border: var(--border-width) solid var(--c-background-700);
@@ -36,7 +38,6 @@
   background-color: var(--c-background-700);
   color: var(--c-accent-500);
 
-  cursor: pointer;
   transition:
     color var(--simple-transition-duration),
     opacity var(--simple-transition-duration),
