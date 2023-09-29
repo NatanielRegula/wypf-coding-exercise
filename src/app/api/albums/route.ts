@@ -26,7 +26,7 @@ export async function GET(request: Request): Promise<NextResponse<Album[]>> {
 
   const rawData = await res.json();
 
-  const validatedUsersAndErrorsAsNull = rawData.map((data: unknown) => {
+  const validatedAlbumsAndErrorsAsNull = rawData.map((data: unknown) => {
     try {
       return AlbumZodObject.parse(data);
     } catch (error) {
@@ -35,9 +35,9 @@ export async function GET(request: Request): Promise<NextResponse<Album[]>> {
     }
   });
 
-  const validatedUsers: Album[] = validatedUsersAndErrorsAsNull.filter(
-    (user: Album | null) => user !== null
+  const validatedAlbums: Album[] = validatedAlbumsAndErrorsAsNull.filter(
+    (album: Album | null) => album !== null
   );
 
-  return NextResponse.json(validatedUsers);
+  return NextResponse.json(validatedAlbums);
 }
