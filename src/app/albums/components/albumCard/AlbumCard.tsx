@@ -12,10 +12,19 @@ export default function AlbumCard(props: Props) {
   return (
     <div className={styles.albumCard}>
       <div className={styles.primaryInformation}>
-        <LabeledValue label={'Name'} value={props.albumTitle} primary />
+        <LabeledValue
+          className={styles.albumTitle}
+          label={'Name'}
+          value={props.albumTitle}
+          primary
+        />
 
         <div className={styles.endSection}>
-          <LabeledValue label={'By User'} value={props.userName} alignEnd />
+          <LabeledValue
+            label={'By User'}
+            value={props.userName}
+            className={styles.labeledValue}
+          />
           <ButtonLink className={styles.showHideDetailBtn} href={'/album/'}>
             <span>View Album</span>
 

@@ -6,6 +6,7 @@ interface Props {
   value: string;
   primary?: boolean;
   alignEnd?: boolean;
+  className?: string;
 }
 
 export default function LabeledValue({
@@ -13,12 +14,14 @@ export default function LabeledValue({
   value,
   primary = false,
   alignEnd = false,
+  className,
 }: Props) {
   return (
     <div
       className={classNames(styles.labeledValue, {
         [styles.primary]: primary,
         [styles.alignEnd]: alignEnd,
+        [className ?? '']: className !== undefined,
       })}
     >
       <span className={styles.label}>{label}</span>
