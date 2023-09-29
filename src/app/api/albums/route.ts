@@ -11,7 +11,9 @@ export async function GET(request: Request): Promise<NextResponse<Album[]>> {
   if (requestedUserId !== null) {
     params.append('userId', requestedUserId);
   }
+
   console.log(params.toString());
+
   const res = await fetch(
     `https://jsonplaceholder.typicode.com/albums?${params.toString()}`,
     {

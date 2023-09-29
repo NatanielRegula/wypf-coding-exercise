@@ -9,9 +9,17 @@ import styles from './page.module.css';
 import Navbar from '@/global_components/navbar/Navbar';
 import AlbumCard from './components/albumCard/AlbumCard';
 import { Album } from '../api/albums/types';
+import { User } from '../api/users/types';
 
 export default function Albums() {
   const [albums, setAlbums] = useState<Album[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
+
+  const getUsers = async () => {
+    const usersResponse = await fetch('/api/users');
+    const usersResponseJson = await usersResponse.json();
+    setUsers(usersResponseJson);
+  };
 
   const getAlbums = async () => {
     const usersResponse = await fetch('/api/albums');
@@ -21,6 +29,7 @@ export default function Albums() {
 
   useEffect(() => {
     getAlbums();
+    getUsers();
   }, []);
 
   return (
@@ -32,7 +41,10 @@ export default function Albums() {
           {albums.map((album) => (
             <AlbumCard
               albumTitle={album.title}
-              userName={'placeholder'}
+              userName={
+                users.find((user) => user.id === album.userId)?.username ??
+                'Unknown'
+              }
               userId={album.userId}
               key={album.id}
             />
