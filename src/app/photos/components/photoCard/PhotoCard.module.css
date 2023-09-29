@@ -1,0 +1,17 @@
+.photoCard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: var(--border-width-200) solid var(--c-on-background-200);
+  border-radius: var(--radius);
+  overflow: clip;
+
+  .imageContainer {
+    background-color: var(--c-background-700);
+    line-height: 0;
+  }
+
+  .information {
+    padding: var(--s-sides-inset-card);
+  }
+}

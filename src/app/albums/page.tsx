@@ -46,6 +46,7 @@ export default function Albums() {
                 'Unknown'
               }
               userId={album.userId}
+              albumId={album.id}
               key={album.id}
             />
           ))}

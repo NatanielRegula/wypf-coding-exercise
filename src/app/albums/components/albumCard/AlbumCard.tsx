@@ -6,6 +6,7 @@ interface Props {
   albumTitle: string;
   userName: string;
   userId: number;
+  albumId: number;
 }
 
 export default function AlbumCard(props: Props) {
@@ -25,7 +26,10 @@ export default function AlbumCard(props: Props) {
             value={props.userName}
             className={styles.labeledValue}
           />
-          <ButtonLink className={styles.showHideDetailBtn} href={'/album/'}>
+          <ButtonLink
+            className={styles.showHideDetailBtn}
+            href={`/photos?albumId=${props.albumId.toString()}&userId=${props.userId.toString()}`}
+          >
             <span>View Album</span>
 
             <svg

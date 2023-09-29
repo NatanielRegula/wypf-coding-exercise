@@ -1,0 +1,30 @@
+.page {
+  position: relative;
+  min-height: 100svh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    margin-bottom: var(--s-siblings-large);
+
+    span {
+      color: var(--c-accent-500);
+    }
+  }
+}
+
+.contentWrapper {
+  padding: 10rem 0;
+}
+
+.photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--s-siblings);
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
