@@ -6,7 +6,6 @@ import ContentWrapper from '../../global_components/content_wrapper/ContentWrapp
 
 import styles from './page.module.css';
 
-import Navbar from '@/global_components/navbar/Navbar';
 import { User } from '../api/users/types';
 import { Photo } from '../api/photos/types';
 import PhotoCard from './components/photoCard/PhotoCard';
@@ -46,7 +45,6 @@ export default function Photos({
 
   return (
     <main className={styles.page}>
-      <Navbar />
       <ContentWrapper className={styles.contentWrapper}>
         <LoadingIndicator loading={photos.length === 0} />
 
