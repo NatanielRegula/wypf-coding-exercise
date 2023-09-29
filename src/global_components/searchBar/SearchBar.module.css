@@ -1,0 +1,38 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-siblings-small);
+}
+
+.searchBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.45rem 1.5rem;
+  font-family: var(--font-family);
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1;
+  border-radius: var(--radius);
+
+  border: var(--border-width) solid var(--c-background-700);
+
+  background-color: transparent;
+  color: var(--c-accent-500);
+
+  min-height: 3rem;
+
+  transition:
+    color var(--simple-transition-duration),
+    opacity var(--simple-transition-duration),
+    background-color var(--simple-transition-duration),
+    box-shadow var(--simple-transition-duration),
+    background-position var(--simple-transition-duration);
+}
+
+.label {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1rem;
+}

@@ -15,4 +15,5 @@ export type AlbumsApiResponse = {
   pagesCount: number;
   currentPage: number;
   itemsPerPage: number;
+  isSearchResponse: boolean;
 };

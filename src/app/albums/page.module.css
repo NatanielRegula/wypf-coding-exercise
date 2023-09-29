@@ -10,6 +10,10 @@
   }
 }
 
+.searchBar {
+  margin-bottom: var(--s-siblings);
+}
+
 .contentWrapper {
   padding: 10rem 0;
 }

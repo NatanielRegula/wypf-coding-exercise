@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Album, AlbumsApiResponse, AlbumZodObject } from './types';
+import fuzzySearch, { SearchItem } from '@/utils/fuzzySearch';
 
 export async function GET(
   request: Request
@@ -39,12 +40,59 @@ export async function GET(
     (album: Album | null) => album !== null
   );
 
+  //----- Search -----/
+  const requestedQuery = searchParams.get('query');
+
   const itemsPerPage = Math.min(
     Math.max(parseInt(searchParams.get('itemsPerPage') ?? '10'), 5),
     20
   );
 
-  const pagesCount = Math.ceil(validatedAlbums.length / itemsPerPage);
+  if (requestedQuery === null) {
+    //----- Pagination -----/
+
+    const pagesCount = Math.ceil(validatedAlbums.length / itemsPerPage);
+
+    const currentPage = Math.min(
+      Math.max(parseInt(searchParams.get('page') ?? '1'), 1),
+      pagesCount
+    );
+
+    const sliceStart = (currentPage - 1) * itemsPerPage;
+    const sliceEnd = sliceStart + itemsPerPage;
+
+    const selectedRange = validatedAlbums.slice(sliceStart, sliceEnd);
+
+    const hasPrevPage = sliceStart > 0;
+    const hasNextPage = sliceEnd < validatedAlbums.length;
+
+    return NextResponse.json({
+      data: selectedRange,
+      hasPrevPage: hasPrevPage,
+      hasNextPage: hasNextPage,
+      pagesCount: pagesCount,
+      currentPage: currentPage,
+      itemsPerPage: itemsPerPage,
+      isSearchResponse: false,
+    });
+  }
+
+  //----- Search and Pagination -----/
+
+  const searchItems = validatedAlbums.map<SearchItem<Album>>(
+    (validatedAlbum) => ({
+      searchables: [validatedAlbum.title],
+      associatedObject: validatedAlbum,
+    })
+  );
+
+  const searchResults = fuzzySearch<Album>(requestedQuery, searchItems);
+
+  const searchResultsAlbums = searchResults.map(
+    (searchResult) => searchResult.associatedObject
+  );
+
+  const pagesCount = Math.ceil(searchResultsAlbums.length / itemsPerPage);
 
   const currentPage = Math.min(
     Math.max(parseInt(searchParams.get('page') ?? '1'), 1),
@@ -54,10 +102,10 @@ export async function GET(
   const sliceStart = (currentPage - 1) * itemsPerPage;
   const sliceEnd = sliceStart + itemsPerPage;
 
-  const selectedRange = validatedAlbums.slice(sliceStart, sliceEnd);
+  const selectedRange = searchResultsAlbums.slice(sliceStart, sliceEnd);
 
   const hasPrevPage = sliceStart > 0;
-  const hasNextPage = sliceEnd < validatedAlbums.length;
+  const hasNextPage = sliceEnd < searchResultsAlbums.length;
 
   return NextResponse.json({
     data: selectedRange,
@@ -66,5 +114,6 @@ export async function GET(
     pagesCount: pagesCount,
     currentPage: currentPage,
     itemsPerPage: itemsPerPage,
+    isSearchResponse: true,
   });
 }

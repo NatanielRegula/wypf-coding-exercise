@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import ContentWrapper from '../../global_components/content_wrapper/ContentWrapper';
 
@@ -15,6 +15,7 @@ import Button from '@/global_components/button/Button';
 import classNames from 'classnames';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import ChevronSvg from '@/global_components/chevronSvg/ChevronSvg';
+import SearchBar from '@/global_components/searchBar/SearchBar';
 
 export default function Albums() {
   const [albums, setAlbums] = useState<Album[]>([]);
@@ -30,6 +31,11 @@ export default function Albums() {
 
   const itemsPerPage = searchParams.get('itemsPerPage') ?? '10';
   const currentPage = searchParams.get('page') ?? '1';
+  const currentSearchQuery = searchParams.get('query') ?? '';
+
+  const [searchBarValue, setSearchBarValue] = useState(
+    decodeURI(currentSearchQuery)
+  );
 
   const getUsers = async () => {
     const usersResponse = await fetch('/api/users');
@@ -38,8 +44,10 @@ export default function Albums() {
   };
 
   const getAlbums = async () => {
+    setAlbums([]);
+
     const albumsResponse = await fetch(
-      `/api/albums?itemsPerPage=${itemsPerPage}&page=${currentPage}`
+      `/api/albums?itemsPerPage=${itemsPerPage}&page=${currentPage}&query=${currentSearchQuery}`
     );
 
     const albumsResponseJson: AlbumsApiResponse = await albumsResponse.json();
@@ -54,13 +62,32 @@ export default function Albums() {
     );
     params.set('page', albumsResponseJson.currentPage.toString());
     params.set('itemsPerPage', albumsResponseJson.itemsPerPage.toString());
+    params.set('query', currentSearchQuery);
 
     router.push(pathname + '?' + params.toString());
   };
 
   useEffect(() => {
     Promise.all([getAlbums(), getUsers()]);
-  }, [itemsPerPage, currentPage]);
+  }, [itemsPerPage, currentPage, currentSearchQuery]);
+
+  const searchHandler = useCallback(() => {
+    const params = new URLSearchParams(
+      searchParams as unknown as URLSearchParams
+    );
+
+    params.set('query', encodeURI(searchBarValue));
+
+    router.push(pathname + '?' + params.toString());
+  }, [searchBarValue]);
+
+  useEffect(() => {
+    const debounceTimer = setTimeout(() => {
+      searchHandler();
+    }, 600);
+
+    return () => clearTimeout(debounceTimer);
+  }, [searchBarValue]);
 
   return (
     <main className={styles.page}>
@@ -69,6 +96,13 @@ export default function Albums() {
         <LoadingIndicator loading={albums.length === 0 || users.length === 0} />
 
         <h1>Albums list</h1>
+        <SearchBar
+          className={styles.searchBar}
+          value={searchBarValue}
+          onChange={(e) => {
+            setSearchBarValue(e.currentTarget.value);
+          }}
+        />
 
         <div className={styles.list}>
           {albums.map((album) => (
