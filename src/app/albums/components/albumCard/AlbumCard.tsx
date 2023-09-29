@@ -27,7 +27,7 @@ export default function AlbumCard(props: Props) {
             className={styles.labeledValue}
           />
           <ButtonLink
-            className={styles.showHideDetailBtn}
+            className={styles.btn}
             href={`/photos?albumId=${props.albumId.toString()}&userId=${props.userId.toString()}`}
           >
             <span>View Album</span>

@@ -42,10 +42,11 @@
       }
     }
 
-    .showHideDetailBtn {
+    .btn {
       display: flex;
       gap: var(--s-siblings-small);
       width: 100%;
+      height: 3rem;
 
       @mixin sm {
         width: unset;
