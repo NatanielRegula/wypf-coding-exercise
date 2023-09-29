@@ -32,11 +32,11 @@ export default function Photos({
   };
 
   const getPhotos = async () => {
-    const usersResponse = await fetch(`/api/photos?albumId=${albumId}`);
+    const photosResponse = await fetch(`/api/photos?albumId=${albumId}`);
 
-    const usersResponseJson = await usersResponse.json();
+    const photosResponseJson = await photosResponse.json();
 
-    setPhotos(usersResponseJson);
+    setPhotos(photosResponseJson);
   };
 
   useEffect(() => {
