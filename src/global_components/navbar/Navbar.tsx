@@ -13,6 +13,21 @@ export default function Navbar() {
   const [isMobileUlShown, setIsMobileUlShown] = useState(false);
   const currentRoute = usePathname();
 
+  const internalLinks = [
+    {
+      label: 'Home',
+      url: '/',
+    },
+    {
+      label: 'Users',
+      url: '/users',
+    },
+    {
+      label: 'Albums',
+      url: '/albums',
+    },
+  ];
+
   return (
     <nav
       className={classNames(styles.navbar, {
@@ -35,34 +50,24 @@ export default function Navbar() {
           })}
         >
           <ul id="primary-navigation">
-            <li
-              className={classNames({
-                [styles.active]: currentRoute === '/',
-              })}
-            >
-              <Link href="/">Home</Link>
-            </li>
-
-            <li
-              className={classNames({
-                [styles.active]: currentRoute === '/users',
-              })}
-            >
-              <Link href="/users">Users</Link>
-            </li>
-
-            <li
-              className={classNames({
-                [styles.active]: currentRoute === '/albums',
-              })}
-            >
-              <Link href="/albums">Albums</Link>
-            </li>
+            {internalLinks.map((link) => (
+              <li
+                className={classNames({
+                  [styles.active]: currentRoute === link.url,
+                })}
+                key={`${link.url}-${link.label}`}
+              >
+                <Link onClick={() => setIsMobileUlShown(false)} href={link.url}>
+                  {link.label}
+                </Link>
+              </li>
+            ))}
 
             <li>
               <Link
                 href="https://github.com/NatanielRegula/wypf-coding-exercise"
                 target="_blank"
+                onClick={() => setIsMobileUlShown(false)}
               >
                 Github
               </Link>

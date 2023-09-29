@@ -8,7 +8,6 @@ import UserCard from './components/userCard/UserCard';
 import styles from './page.module.css';
 
 import { User } from '../api/users/types';
-import Navbar from '@/global_components/navbar/Navbar';
 import LoadingIndicator from '@/global_components/loadingIndicator/LoadingIndicator';
 import SkeletonBars from '@/global_components/skeleton/Skeleton';
 
@@ -27,7 +26,6 @@ export default function Users() {
 
   return (
     <main className={styles.page}>
-      <Navbar />
       <ContentWrapper className={styles.contentWrapper}>
         <LoadingIndicator loading={users.length === 0} />
 

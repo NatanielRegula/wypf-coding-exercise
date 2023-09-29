@@ -6,7 +6,6 @@ import ContentWrapper from '../../global_components/content_wrapper/ContentWrapp
 
 import styles from './page.module.css';
 
-import Navbar from '@/global_components/navbar/Navbar';
 import AlbumCard from './components/albumCard/AlbumCard';
 import { Album, AlbumsApiResponse } from '../api/albums/types';
 import { User } from '../api/users/types';
@@ -92,7 +91,6 @@ export default function Albums() {
 
   return (
     <main className={styles.page}>
-      <Navbar />
       <ContentWrapper className={styles.contentWrapper}>
         <LoadingIndicator loading={albums.length === 0 || users.length === 0} />
 
