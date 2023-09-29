@@ -10,6 +10,7 @@ import Navbar from '@/global_components/navbar/Navbar';
 import { User } from '../api/users/types';
 import { Photo } from '../api/photos/types';
 import PhotoCard from './components/photoCard/PhotoCard';
+import LoadingIndicator from '@/global_components/loadingIndicator/LoadingIndicator';
 
 export default function Photos({
   searchParams,
@@ -47,6 +48,8 @@ export default function Photos({
     <main className={styles.page}>
       <Navbar />
       <ContentWrapper className={styles.contentWrapper}>
+        <LoadingIndicator loading={photos.length === 0} />
+
         <h1>
           View Images: <span>{user?.username}</span>
         </h1>

@@ -9,6 +9,7 @@ import styles from './page.module.css';
 
 import { User } from '../api/users/types';
 import Navbar from '@/global_components/navbar/Navbar';
+import LoadingIndicator from '@/global_components/loadingIndicator/LoadingIndicator';
 
 export default function Users() {
   const [users, setUsers] = useState<User[]>([]);
@@ -27,7 +28,10 @@ export default function Users() {
     <main className={styles.page}>
       <Navbar />
       <ContentWrapper className={styles.contentWrapper}>
+        <LoadingIndicator loading={users.length === 0} />
+
         <h1>Users list</h1>
+
         <div className={styles.list}>
           {users.map((user) => (
             <UserCard

@@ -1,0 +1,53 @@
+.loadingIndicator {
+  --ball-diameter: 1rem;
+  --animation: 1.2s ball-fade infinite cubic-bezier(0.78, 0.14, 0.15, 0.86) 0.2s;
+
+  position: relative;
+
+  width: var(--ball-diameter);
+  height: var(--ball-diameter);
+
+  animation: var(--animation);
+
+  border-radius: 100%;
+  background-color: rgba(255, 255, 255, 0);
+  /* background-color: rgba(231, 13, 13, 0.88); */
+
+  &.stoppedLoading {
+    --animation: none;
+  }
+}
+
+.loadingIndicator:before,
+.loadingIndicator:after {
+  position: absolute;
+
+  width: var(--ball-diameter);
+  height: var(--ball-diameter);
+
+  content: '';
+
+  animation: var(--animation);
+
+  border-radius: 100%;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.loadingIndicator:before {
+  left: calc(var(--ball-diameter) + 0.3rem);
+  animation-delay: 0.4s;
+}
+
+.loadingIndicator:after {
+  left: calc((var(--ball-diameter) + 0.3rem) * 2);
+  animation-delay: 0.6s;
+}
+
+@keyframes ball-fade {
+  0% {
+    background-color: var(--c-accent-300);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0);
+  }
+}

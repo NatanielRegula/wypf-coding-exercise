@@ -10,6 +10,7 @@ import Navbar from '@/global_components/navbar/Navbar';
 import AlbumCard from './components/albumCard/AlbumCard';
 import { Album } from '../api/albums/types';
 import { User } from '../api/users/types';
+import LoadingIndicator from '@/global_components/loadingIndicator/LoadingIndicator';
 
 export default function Albums() {
   const [albums, setAlbums] = useState<Album[]>([]);
@@ -36,7 +37,10 @@ export default function Albums() {
     <main className={styles.page}>
       <Navbar />
       <ContentWrapper className={styles.contentWrapper}>
+        <LoadingIndicator loading={albums.length === 0 || users.length === 0} />
+
         <h1>Albums list</h1>
+
         <div className={styles.list}>
           {albums.map((album) => (
             <AlbumCard
