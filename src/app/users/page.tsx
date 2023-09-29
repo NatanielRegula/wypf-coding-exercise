@@ -10,6 +10,7 @@ import styles from './page.module.css';
 import { User } from '../api/users/types';
 import Navbar from '@/global_components/navbar/Navbar';
 import LoadingIndicator from '@/global_components/loadingIndicator/LoadingIndicator';
+import SkeletonBars from '@/global_components/skeleton/Skeleton';
 
 export default function Users() {
   const [users, setUsers] = useState<User[]>([]);
@@ -33,6 +34,7 @@ export default function Users() {
         <h1>Users list</h1>
 
         <div className={styles.list}>
+          {users.length === 0 && <SkeletonBars quantity={10} />}
           {users.map((user) => (
             <UserCard
               fullName={user.name}

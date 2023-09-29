@@ -16,6 +16,7 @@ import classNames from 'classnames';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import ChevronSvg from '@/global_components/chevronSvg/ChevronSvg';
 import SearchBar from '@/global_components/searchBar/SearchBar';
+import SkeletonBars from '@/global_components/skeleton/Skeleton';
 
 export default function Albums() {
   const [albums, setAlbums] = useState<Album[]>([]);
@@ -105,6 +106,10 @@ export default function Albums() {
         />
 
         <div className={styles.list}>
+          {albums.length === 0 && (
+            <SkeletonBars quantity={parseInt(itemsPerPage)} />
+          )}
+
           {albums.map((album) => (
             <AlbumCard
               albumTitle={album.title}
@@ -118,6 +123,7 @@ export default function Albums() {
             />
           ))}
         </div>
+
         <div className={styles.filters}>
           <Button
             className={styles.btn}

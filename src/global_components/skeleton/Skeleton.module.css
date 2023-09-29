@@ -1,0 +1,6 @@
+.bar {
+  height: 5.5rem;
+  background-color: var(--c-background-700);
+  width: 100%;
+  border-radius: var(--radius);
+}
