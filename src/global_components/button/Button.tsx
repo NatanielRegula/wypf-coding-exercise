@@ -35,22 +35,20 @@ const Button = ({
   onClick,
 }: PropsButton) => {
   return (
-    <div className={styles.wrapper}>
-      <button
-        onClick={onClick}
-        type={type}
-        id={id}
-        disabled={functionalityDisabled}
-        className={classNames(className, styles.button, {
-          [styles.primary]: primary,
-          [styles.outline]: outline,
-          [styles.fullWidth]: fullWidth,
-          [styles.disabled]: visuallyDisabled,
-        })}
-      >
-        {children}
-      </button>
-    </div>
+    <button
+      onClick={onClick}
+      type={type}
+      id={id}
+      disabled={functionalityDisabled}
+      className={classNames(className, styles.button, {
+        [styles.primary]: primary,
+        [styles.outline]: outline,
+        [styles.fullWidth]: fullWidth,
+        [styles.disabled]: visuallyDisabled,
+      })}
+    >
+      {children}
+    </button>
   );
 };
 
@@ -80,20 +78,18 @@ export const ButtonLink = ({
   href,
 }: PropsLink) => {
   return (
-    <div className={styles.wrapper}>
-      <Link
-        href={functionalityDisabled ? '' : href}
-        id={id}
-        className={classNames(className, styles.button, {
-          [styles.primary]: primary,
-          [styles.fullWidth]: fullWidth,
-          [styles.outline]: outline,
-          [styles.disabled]: visuallyDisabled,
-        })}
-      >
-        {children}
-      </Link>
-    </div>
+    <Link
+      href={functionalityDisabled ? '' : href}
+      id={id}
+      className={classNames(className, styles.button, {
+        [styles.primary]: primary,
+        [styles.fullWidth]: fullWidth,
+        [styles.outline]: outline,
+        [styles.disabled]: visuallyDisabled,
+      })}
+    >
+      {children}
+    </Link>
   );
 };
 
@@ -107,29 +103,25 @@ export const ButtonLinkText = ({
 }: PropsLinkText) => {
   if (functionalityDisabled) {
     return (
-      <div className={styles.wrapper}>
-        <div
-          className={classNames(className, styles.textLink, {
-            [styles.disabled]: visuallyDisabled,
-          })}
-        >
-          {children}
-        </div>
-      </div>
-    );
-  }
-  return (
-    <div className={styles.wrapper}>
-      <Link
-        href={functionalityDisabled ? '' : href}
-        id={id}
+      <div
         className={classNames(className, styles.textLink, {
           [styles.disabled]: visuallyDisabled,
         })}
       >
         {children}
-      </Link>
-    </div>
+      </div>
+    );
+  }
+  return (
+    <Link
+      href={functionalityDisabled ? '' : href}
+      id={id}
+      className={classNames(className, styles.textLink, {
+        [styles.disabled]: visuallyDisabled,
+      })}
+    >
+      {children}
+    </Link>
   );
 };
 
