@@ -32,6 +32,7 @@
   line-height: 1;
   cursor: pointer;
   border-radius: var(--radius);
+  min-height: 3rem;
 
   border: var(--border-width) solid var(--c-background-700);
 
