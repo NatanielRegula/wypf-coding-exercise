@@ -28,6 +28,7 @@ export default function AlbumCard(props: Props) {
             className={styles.labeledValue}
           />
           <ButtonLink
+            prefetch={false}
             className={styles.btn}
             href={`/photos?albumId=${props.albumId.toString()}&userId=${props.userId.toString()}`}
           >

@@ -54,6 +54,7 @@ const Button = ({
 
 interface PropsLink extends Props {
   href: string | UrlObject;
+  prefetch?: boolean;
 }
 
 interface PropsLinkText {
@@ -75,10 +76,12 @@ export const ButtonLink = ({
   fullWidth = false,
   visuallyDisabled = false,
   functionalityDisabled = false,
+  prefetch = false,
   href,
 }: PropsLink) => {
   return (
     <Link
+      prefetch={prefetch}
       href={functionalityDisabled ? '' : href}
       id={id}
       className={classNames(className, styles.button, {
