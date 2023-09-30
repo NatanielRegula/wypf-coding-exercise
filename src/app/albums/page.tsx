@@ -12,7 +12,7 @@ import { User } from '../api/users/types';
 import LoadingIndicator from '@/global_components/loadingIndicator/LoadingIndicator';
 import { ButtonLink } from '@/global_components/button/Button';
 import classNames from 'classnames';
-import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import ChevronSvg from '@/global_components/chevronSvg/ChevronSvg';
 import SearchBar from '@/global_components/searchBar/SearchBar';
 import SkeletonBars from '@/global_components/skeleton/Skeleton';
@@ -26,7 +26,6 @@ export default function Albums() {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const pathname = usePathname();
 
   const pagesCount = searchParams.get('pagesCount') ?? '10';
   const hasNextPage = parseBoolean(searchParams.get('hasNextPage') ?? 'true');
@@ -72,7 +71,7 @@ export default function Albums() {
 
     params.sort();
 
-    router.push(pathname + '?' + params.toString(), { shallow: true });
+    router.replace('?' + params.toString(), { shallow: true });
   };
 
   useEffect(() => {
@@ -84,8 +83,8 @@ export default function Albums() {
 
     params.set('query', encodeURI(searchBarValue));
 
-    router.push(pathname + '?' + params.toString(), { shallow: true });
-  }, [searchBarValue]);
+    router.push('?' + params.toString(), { shallow: true });
+  }, [searchBarValue, searchParams]);
 
   useEffect(() => {
     if (isFirstRender.current) {
