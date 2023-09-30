@@ -72,7 +72,7 @@ export default function Albums() {
 
     params.sort();
 
-    router.push(pathname + '?' + params.toString());
+    router.push(pathname + '?' + params.toString(), { shallow: true });
   };
 
   useEffect(() => {
