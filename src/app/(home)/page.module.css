@@ -1,13 +1,14 @@
 .page {
   position: relative;
-  min-height: 100svh;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 .contentWrapper {
   padding: 10rem 0;
+  min-height: calc(100svh - var(--h-navbar));
+  min-height: calc(100vh - var(--h-navbar));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .subheading {
