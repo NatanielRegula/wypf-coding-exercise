@@ -12,27 +12,35 @@ import { User } from '../api/users/types';
 import LoadingIndicator from '@/global_components/loadingIndicator/LoadingIndicator';
 import { ButtonLink } from '@/global_components/button/Button';
 import classNames from 'classnames';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import ChevronSvg from '@/global_components/chevronSvg/ChevronSvg';
 import SearchBar from '@/global_components/searchBar/SearchBar';
 import SkeletonBars from '@/global_components/skeleton/Skeleton';
 import { parseBoolean } from '@/utils/parseBoolean';
 
-export default function Albums() {
+export default function Albums({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
   const isFirstRender = useRef(true);
 
   const [albums, setAlbums] = useState<Album[]>([]);
   const [users, setUsers] = useState<User[]>([]);
 
   const router = useRouter();
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
 
-  const pagesCount = searchParams.get('pagesCount') ?? '10';
-  const hasNextPage = parseBoolean(searchParams.get('hasNextPage') ?? 'true');
-  const hasPrevPage = parseBoolean(searchParams.get('hasPrevPage') ?? 'false');
-  const itemsPerPage = searchParams.get('itemsPerPage') ?? '10';
-  const currentPage = searchParams.get('page') ?? '1';
-  const currentSearchQuery = searchParams.get('query') ?? '';
+  const pagesCount = searchParams.pagesCount ?? '10';
+  const hasNextPage = parseBoolean(
+    (searchParams.hasNextPage as string) ?? 'true'
+  );
+  const hasPrevPage = parseBoolean(
+    (searchParams.hasPrevPage as string) ?? 'false'
+  );
+  const itemsPerPage = (searchParams.itemsPerPage as string) ?? '10';
+  const currentPage = (searchParams.page as string) ?? '1';
+  const currentSearchQuery = (searchParams.query as string) ?? '';
 
   const [searchBarValue, setSearchBarValue] = useState(
     decodeURI(currentSearchQuery)
@@ -61,7 +69,13 @@ export default function Albums() {
 
     setAlbums(albumsResponseJson.data);
 
-    const params = new URLSearchParams(searchParams.toString());
+    const searchParamsArray: string[][] = Object.keys(searchParams).map(
+      (key) => {
+        return [`${key}`, searchParams[key]];
+      }
+    ) as string[][];
+
+    const params = new URLSearchParams(searchParamsArray);
 
     params.set('page', albumsResponseJson.currentPage.toString());
     params.set('itemsPerPage', albumsResponseJson.itemsPerPage.toString());
@@ -79,7 +93,13 @@ export default function Albums() {
   }, [itemsPerPage, currentPage, currentSearchQuery]);
 
   const searchHandler = useCallback(() => {
-    const params = new URLSearchParams(searchParams.toString());
+    const searchParamsArray: string[][] = Object.keys(searchParams).map(
+      (key) => {
+        return [`${key}`, searchParams[key]];
+      }
+    ) as string[][];
+
+    const params = new URLSearchParams(searchParamsArray);
 
     params.set('query', encodeURI(searchBarValue));
 
