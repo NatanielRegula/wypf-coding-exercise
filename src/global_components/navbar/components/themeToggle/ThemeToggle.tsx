@@ -3,9 +3,13 @@ import styles from './ThemeToggle.module.css';
 import { parseBoolean } from '@/utils/parseBoolean';
 
 export default function ThemeToggle() {
-  const [darkTheme, setDarkTheme] = useState(
-    parseBoolean(localStorage.getItem('colorThemeDark') ?? 'false')
-  );
+  const [darkTheme, setDarkTheme] = useState(false);
+
+  useEffect(() => {
+    setDarkTheme(
+      parseBoolean(localStorage.getItem('colorThemeDark') ?? 'false')
+    );
+  }, []);
 
   useEffect(() => {
     if (darkTheme) {
