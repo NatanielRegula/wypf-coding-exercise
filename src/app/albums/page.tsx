@@ -10,7 +10,7 @@ import AlbumCard from './components/albumCard/AlbumCard';
 import { Album, AlbumsApiResponse } from '../api/albums/types';
 import { User } from '../api/users/types';
 import LoadingIndicator from '@/global_components/loadingIndicator/LoadingIndicator';
-import { ButtonLink } from '@/global_components/button/Button';
+import Button from '@/global_components/button/Button';
 import classNames from 'classnames';
 import { useRouter } from 'next/navigation';
 import ChevronSvg from '@/global_components/chevronSvg/ChevronSvg';
@@ -45,6 +45,16 @@ export default function Albums({
     decodeURI(currentSearchQuery)
   );
 
+  const getSearchParamsMutable = useCallback(() => {
+    const searchParamsArray: string[][] = Object.keys(searchParams).map(
+      (key) => {
+        return [`${key}`, searchParams[key]];
+      }
+    ) as string[][];
+
+    return new URLSearchParams(searchParamsArray);
+  }, [searchParams]);
+
   const getUsers = async () => {
     const usersResponse = await fetch('/api/users');
 
@@ -68,13 +78,7 @@ export default function Albums({
 
     setAlbums(albumsResponseJson.data);
 
-    const searchParamsArray: string[][] = Object.keys(searchParams).map(
-      (key) => {
-        return [`${key}`, searchParams[key]];
-      }
-    ) as string[][];
-
-    const params = new URLSearchParams(searchParamsArray);
+    const params = getSearchParamsMutable();
 
     params.set('page', albumsResponseJson.currentPage.toString());
     params.set('itemsPerPage', albumsResponseJson.itemsPerPage.toString());
@@ -92,13 +96,7 @@ export default function Albums({
   }, [itemsPerPage, currentPage, currentSearchQuery]);
 
   const searchHandler = useCallback(() => {
-    const searchParamsArray: string[][] = Object.keys(searchParams).map(
-      (key) => {
-        return [`${key}`, searchParams[key]];
-      }
-    ) as string[][];
-
-    const params = new URLSearchParams(searchParamsArray);
+    const params = getSearchParamsMutable();
 
     params.set('query', encodeURI(searchBarValue));
 
@@ -158,28 +156,40 @@ export default function Albums({
         </div>
 
         <div className={styles.filters}>
-          <ButtonLink
+          <Button
             className={styles.btn}
-            href={`?page=${(parseInt(currentPage) - 1).toString()}`}
+            onClick={() => {
+              const params = getSearchParamsMutable();
+
+              params.set('page', (parseInt(currentPage) - 1).toString());
+
+              router.push('?' + params.toString(), { shallow: true });
+            }}
             visuallyDisabled={!hasPrevPage}
             functionalityDisabled={!hasPrevPage}
           >
             <ChevronSvg />
             <span>Priv</span>
-          </ButtonLink>
+          </Button>
 
           <span>{`${currentPage} / ${pagesCount}`}</span>
 
-          <ButtonLink
+          <Button
             className={classNames(styles.btn, styles.next)}
-            href={`?page=${(parseInt(currentPage) + 1).toString()}`}
+            onClick={() => {
+              const params = getSearchParamsMutable();
+
+              params.set('page', (parseInt(currentPage) + 1).toString());
+
+              router.push('?' + params.toString(), { shallow: true });
+            }}
             visuallyDisabled={!hasNextPage}
             functionalityDisabled={!hasNextPage}
           >
             <span>Next</span>
 
             <ChevronSvg />
-          </ButtonLink>
+          </Button>
         </div>
       </ContentWrapper>
     </main>
