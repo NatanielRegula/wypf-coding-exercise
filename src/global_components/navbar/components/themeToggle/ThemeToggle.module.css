@@ -1,0 +1,35 @@
+.themeToggle {
+  --size: 2rem;
+  position: relative;
+  display: block;
+  height: var(--size);
+  width: var(--size);
+  background-color: transparent;
+  border-radius: var(--radius);
+  border: var(--border-width) solid var(--c-accent-500);
+}
+
+.themeToggle::before,
+.themeToggle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  width: calc(var(--size) * 0.7);
+  height: calc(var(--size) * 0.7);
+}
+
+.themeToggle::before {
+  height: calc(calc(var(--size) * 0.7) - var(--border-width));
+  background-color: var(--c-accent-500);
+  left: calc(50% - 0.3rem);
+  width: calc((var(--size) * 0.7) / 2);
+  border-radius: calc((var(--size) * 0.7) / 2) 0 0 calc((var(--size) * 0.7) / 2);
+}
+
+.themeToggle::after {
+  border: var(--border-width) solid var(--c-accent-500);
+  border-radius: 50%;
+}

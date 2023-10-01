@@ -1,5 +1,6 @@
 /* ----- Themes ----- */
 @import 'themes/light/theme';
+@import 'themes/dark/theme';
 @import 'parts/text';
 @import 'parts/accessibility';
 

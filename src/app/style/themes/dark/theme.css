@@ -1,11 +1,21 @@
-:root {
-  --c-background-400: #323232;
-  --c-background-600: #1e1e1e;
+.darkColorTheme {
+  --c-background-400: #181a1b;
+  --c-background-700: #242a2d;
 
-  --c-on-background-400: #ffffff;
+  --c-on-background-400: #dbd8d3;
+  --c-on-background-200: #363a3c;
 
-  --c-accent-500: #ff8b02;
-  --c-accent-200: #fffaf5;
+  --c-secondary-400: #1e2122;
+  --c-secondary-300: #181a1b;
+
+  --c-on-secondary-400: #dbd8d3;
+
+  --c-accent-500: #7bbfff;
+  --c-accent-300: #59aeff;
+  --c-accent-250: #394055;
+  --c-accent-200: #1f2529;
+
+  --c-on-accent-500: #e0ddd9;
 
   --c-success-900: #92ffa3;
 }
