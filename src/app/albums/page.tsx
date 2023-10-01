@@ -29,7 +29,6 @@ export default function Albums({
   const [users, setUsers] = useState<User[]>([]);
 
   const router = useRouter();
-  // const searchParams = useSearchParams();
 
   const pagesCount = searchParams.pagesCount ?? '10';
   const hasNextPage = parseBoolean(
