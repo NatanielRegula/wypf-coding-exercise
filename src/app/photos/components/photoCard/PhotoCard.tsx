@@ -20,11 +20,7 @@ export default function PhotoCard(props: Props) {
         />
       </div>
       <div className={styles.information}>
-        <LabeledValue
-          className={styles.albumTitle}
-          label={'Title'}
-          value={props.title}
-        />
+        <LabeledValue label={'Title'} value={props.title} />
       </div>
     </div>
   );
