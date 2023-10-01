@@ -10,7 +10,7 @@ However, I am open to the possibility of rewriting or making any necessary adjus
 
 # Try it
 
-[Live hosted version can be found here: https://coding-exercise-123.netlify.app](https://coding-exercise-123.netlify.app)
+[Live hosted version can be found here: coding-exercise-152.vercel.app](https://coding-exercise-152.vercel.app)
 
 # Try it locally
 
