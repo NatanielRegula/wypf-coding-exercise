@@ -13,6 +13,10 @@ const poppins = Poppins({
 export const metadata = {
   title: 'WYPF Coding Exercise - Nataniel Regula',
   description: 'WYPF Coding Exercise - Nataniel Regula',
+  other: {
+    ///disabling Dark Reader extension (third party dark mode)
+    'darkreader-lock': '',
+  },
 };
 
 export default function RootLayout({
