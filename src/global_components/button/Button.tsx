@@ -76,7 +76,7 @@ export const ButtonLink = ({
   fullWidth = false,
   visuallyDisabled = false,
   functionalityDisabled = false,
-  prefetch = true,
+  prefetch = false,
   href,
 }: PropsLink) => {
   return (
