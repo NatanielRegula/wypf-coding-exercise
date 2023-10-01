@@ -1,6 +1,5 @@
-:root {
+.lightColorTheme {
   --c-background-400: #ffffff;
-  --c-background-600: #fafafa;
   --c-background-700: #f7f7f7;
 
   --c-on-background-400: #151515;
@@ -11,11 +10,10 @@
 
   --c-on-secondary-400: #151515;
 
-  --c-accent-500: #ff6d02;
-  --c-accent-400: #fc8b3a;
-  --c-accent-300: #faa365;
-  --c-accent-250: #feecd6;
-  --c-accent-200: #fffaf5;
+  --c-accent-500: #003787;
+  --c-accent-300: #5a9cff;
+  --c-accent-250: #c4d2fc;
+  --c-accent-200: #f6f9ff;
 
   --c-on-accent-500: #0d0d0d;
 

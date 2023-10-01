@@ -1,10 +1,11 @@
 import Navbar from '@/global_components/navbar/Navbar';
 import './style/globals.css';
 import { Poppins } from 'next/font/google';
+import classNames from 'classnames';
 
 const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['500', '600', '700'],
   variable: '--font-roboto',
   display: 'swap',
 });
@@ -20,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className={poppins.variable} lang="en">
+    <html className={classNames(poppins.variable, 'lightColorTheme')} lang="en">
       <body>
         <Navbar />
 

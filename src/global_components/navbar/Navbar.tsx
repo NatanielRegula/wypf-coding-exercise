@@ -8,6 +8,7 @@ import HamburgerButton from './components/hamburgerButton/HamburgerButton';
 import Link from 'next/link';
 
 import { usePathname } from 'next/navigation';
+import ThemeToggle from './components/themeToggle/ThemeToggle';
 
 export default function Navbar() {
   const [isMobileUlShown, setIsMobileUlShown] = useState(false);
@@ -50,6 +51,10 @@ export default function Navbar() {
           })}
         >
           <ul id="primary-navigation">
+            <li>
+              <ThemeToggle />
+            </li>
+
             {internalLinks.map((link) => (
               <li
                 className={classNames({
